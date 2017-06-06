@@ -1,0 +1,15 @@
+{
+  "name": "grunt-ts-watch",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/noomorph/grunt-ts-watch",
+  "author": "Yaroslav Serhieiev <noomorph@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+      "lint": "eslint .",
+      "test": "npm run lint"
+  },
+  "devDependencies": {
+    "eslint": "^3.19.0"
+  }
+}
