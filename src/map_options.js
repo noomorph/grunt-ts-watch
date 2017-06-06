@@ -1,15 +1,14 @@
+var path = require('path');
+
 module.exports = function map_options(target, options) {
-    var compiler = typeof options.compiler === 'string' ? options.compiler : 'tsc';
-    var customCompilerArgs = Array.isArray(options.compilerArgs) ? options.compilerArgs : [];
-    var timeout = typeof options.timeout === 'number' ? options.timeout : 30000;
-    var project = typeof options.project === 'string' ? options.project : '';
+    var timeout = options.timeout || 30000;
+    var compiler = path.resolve(options.compiler || 'tsc');
+    var compilerArgs = ['-w'].concat(options.compilerArgs || []);
 
     return {
         target: target,
         compiler: compiler,
+        compilerArgs: compilerArgs,
         timeout: timeout,
-        compilerArgs: ['-w']
-            .concat(project ? ['-p', project] : [])
-            .concat(customCompilerArgs),
     };
 };

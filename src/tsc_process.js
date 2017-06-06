@@ -12,16 +12,22 @@ function onCompilationComplete(storage) {
     }
 }
 
-function instantiate(options, storages) {
-    var processHandle = cp.spawn(options.compiler, options.compilerArgs, { shell: false });
+function instantiate(grunt, options, storage) {
+    grunt.verbose.writeln('spawning %s with %O', options.compiler, options.compilerArgs);
+
+    var processHandle = cp.spawn(options.compiler, options.compilerArgs, { shell: true });
 
     processHandle.stdout.on('data', function (data) {
         var text = data.toString();
+        grunt.log.writeln(data);
 
         if (/.*Compilation complete/.test(text)) {
-            var storage = storages.get(options.target);
             onCompilationComplete(storage);
         }
+    });
+
+    processHandle.stderr.on('data', function (data) {
+        grunt.log.error(data.toString());
     });
 
     return processHandle;
