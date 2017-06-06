@@ -15,3 +15,10 @@ Add a section in `Gruntfile.js`.
     }
 }
 ```
+
+## Credits
+
+Many thanks to [@unional](https://github.com/unional) who suggested to look here [at his workaround](https://github.com/unional/color-map/blob/master/scripts/watch.js).
+
+I owe you my inspiration.
+
